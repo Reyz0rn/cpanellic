@@ -1,0 +1,8 @@
+todo:
+
+1st 		sar -r | awk '{print $4}' > sarr
+2nd part 	sed -n '5,$p' < sarr > sarr2
+
+sanity check pentru numar de randuri
+
+3rd part 	awk -F, '{ x += $1 } END { print x/NR }' sarr2
