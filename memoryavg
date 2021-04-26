@@ -1,0 +1,25 @@
+#!/bin/bash
+
+##print memused average 10 min####
+
+sar -r | awk '{print $4}' > sarr
+
+#####average#######
+
+average=$(awk -F, '{ x += $1 } END { print x/NR }' sarr2)
+
+####sanity check fisier mai mare de 20 de records#############
+
+nummin=20
+numreal=$(wc -l sarr2 | cut -d ' ' -f 1)
+
+
+if [[ ! $nummin < $numreal ]]; then
+        sleep 2
+        echo "Counting...."
+        echo "Memory load average pentru server este $average"
+
+else
+    	 echo "Numar prea mic de entry-uri pentru un average corect!"
+        sleep 2
+fi
