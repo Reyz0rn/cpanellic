@@ -5,6 +5,9 @@
 verlicenta=$(/usr/local/cpanel/cpkeyclt | grep -oh Failed)
 
 ##########de verificat mai jos in caz de openvz nou sa nu creeze reteaua pe altceva###############
+###de adaugat sanity check pe pentru venet0:1#############
+
+
 mainip=$(ifconfig venet0:1 | awk '$1 == "inet" {print $2}')
 if [ "$verlicenta" = "Failed" ]
 then
